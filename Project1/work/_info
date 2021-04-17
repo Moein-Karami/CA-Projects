@@ -1,0 +1,279 @@
+m255
+K4
+z2
+!s11f vlog 2020.1 2020.02, Feb 28 2020
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+dD:/Files/University/Term 4/DLD Lab/Projects/Project1/Model Sim/Final_TB
+vAdder
+Z0 !s110 1618674397
+!i10b 1
+!s100 KE^Nbgm66KAQ_ak]4YE013
+Z1 !s11b Dg1SIo80bB@j0V0VzS_@n1
+IkQ^4?W4d`Rf@[EjUag8iG3
+Z2 VDg1SIo80bB@j0V0VzS_@n1
+Z3 dD:/Files/University/Term 4/CA/Projects/Project1
+Z4 w1618673861
+Z5 8D:\Files\University\Term 4\CA\Projects\Project1\DataPath.v
+Z6 FD:\Files\University\Term 4\CA\Projects\Project1\DataPath.v
+!i122 14
+L0 59 3
+Z7 OV;L;2020.1;71
+r1
+!s85 0
+31
+Z8 !s108 1618674397.000000
+Z9 !s107 D:\Files\University\Term 4\CA\Projects\Project1\DataPath.v|
+Z10 !s90 -reportprogress|300|-work|work|-stats=none|D:\Files\University\Term 4\CA\Projects\Project1\DataPath.v|
+!i113 1
+Z11 o-work work
+Z12 tCvgOpt 0
+n@adder
+vController
+!s110 1618674396
+!i10b 1
+!s100 FHCk:EgJJzm;8DCf_`MgE0
+R1
+IHTMG@oZ<H:>9T6[Z>Q83G2
+R2
+R3
+w1618668531
+8D:/Files/University/Term 4/CA/Projects/Project1/Controller.v
+FD:/Files/University/Term 4/CA/Projects/Project1/Controller.v
+!i122 13
+L0 1 59
+R7
+r1
+!s85 0
+31
+!s108 1618674396.000000
+!s107 D:/Files/University/Term 4/CA/Projects/Project1/Controller.v|
+!s90 -reportprogress|300|-work|work|-stats=none|D:/Files/University/Term 4/CA/Projects/Project1/Controller.v|
+!i113 1
+R11
+R12
+n@controller
+vDataPath
+R0
+!i10b 1
+!s100 k7;FLz3lF=U=4l3OQ@YdE0
+R1
+I[nJXLn80=]jmRECDZOD:z3
+R2
+R3
+R4
+R5
+R6
+!i122 14
+L0 1 31
+R7
+r1
+!s85 0
+31
+R8
+R9
+R10
+!i113 1
+R11
+R12
+n@data@path
+XDataPath_v_unit
+Z13 DXx6 sv_std 3 std 0 22 VYECXdT12H8WgbUP_5Y6:3
+R0
+VSZdJz2la<:S_cH=M<2g781
+r1
+!s85 0
+!i10b 1
+!s100 @^OgBcV490;@bYTYGPBjo1
+ISZdJz2la<:S_cH=M<2g781
+!i103 1
+S1
+R3
+R4
+R5
+R6
+!i122 14
+L0 61 0
+R7
+31
+R8
+R9
+R10
+!i113 1
+R11
+R12
+n@data@path_v_unit
+vDivisor
+R0
+!i10b 1
+!s100 3gDDTHBG6i4@SkAnYYO@Q1
+R1
+I>zkReTEH;AHlBD@6Wk<3?2
+R2
+R3
+Z14 w1618674390
+Z15 8D:\Files\University\Term 4\CA\Projects\Project1\TopDesign.v
+Z16 FD:\Files\University\Term 4\CA\Projects\Project1\TopDesign.v
+!i122 15
+L0 1 7
+R7
+r1
+!s85 0
+31
+R8
+!s107 D:\Files\University\Term 4\CA\Projects\Project1\TopDesign.v|
+Z17 !s90 -reportprogress|300|-work|work|-stats=none|D:\Files\University\Term 4\CA\Projects\Project1\TopDesign.v|
+!i113 1
+R11
+R12
+n@divisor
+vIncrementer
+R0
+!i10b 1
+!s100 HH[_ZYPHDl17]=>on30d:1
+R1
+IZ6;P_THEBNO<h4kOUj[mQ2
+R2
+R3
+R4
+R5
+R6
+!i122 14
+L0 55 3
+R7
+r1
+!s85 0
+31
+R8
+R9
+R10
+!i113 1
+R11
+R12
+n@incrementer
+vInverter
+R0
+!i10b 1
+!s100 PHFFJ[_;?7Y`^`<c5KKdM1
+R1
+IgUe=TgMH:VRTQFMBKP2Z20
+R2
+R3
+R4
+R5
+R6
+!i122 14
+L0 51 3
+R7
+r1
+!s85 0
+31
+R8
+R9
+R10
+!i113 1
+R11
+R12
+n@inverter
+vMux
+R0
+!i10b 1
+!s100 0O5]M[86n=YGf5R<nQ5A=1
+R1
+Ij<MUQj`@8K^BWa>m[nGE`3
+R2
+R3
+R4
+R5
+R6
+!i122 14
+L0 47 3
+R7
+r1
+!s85 0
+31
+R8
+R9
+R10
+!i113 1
+R11
+R12
+n@mux
+vRegister
+R0
+!i10b 1
+!s100 GIjd64naZZdVNkJLaz9ll3
+R1
+IWAH5ZQFJgeHoz7X;UnChR0
+R2
+R3
+R4
+R5
+R6
+!i122 14
+L0 41 5
+R7
+r1
+!s85 0
+31
+R8
+R9
+R10
+!i113 1
+R11
+R12
+n@register
+vShiftRegister
+R0
+!i10b 1
+!s100 _iJdV[A=EXaAOLQmANo[e2
+R1
+IS8S<<^=UMGOljlYE8JHFD1
+R2
+R3
+R4
+R5
+R6
+!i122 14
+L0 33 7
+R7
+r1
+!s85 0
+31
+R8
+R9
+R10
+!i113 1
+R11
+R12
+n@shift@register
+XTopDesign_v_unit
+R13
+R0
+VaJYMS^zT<X7eIVOl`9AUe2
+r1
+!s85 0
+!i10b 1
+!s100 z[RGVU1^7SbI]LgPW[2?k0
+IaJYMS^zT<X7eIVOl`9AUe2
+!i103 1
+S1
+R3
+R14
+R15
+R16
+!i122 15
+L0 7 0
+R7
+31
+R8
+Z18 !s107 D:\Files\University\Term 4\CA\Projects\Project1\TopDesign.v|
+R17
+!i113 1
+R11
+R12
+n@top@design_v_unit
