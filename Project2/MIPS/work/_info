@@ -1,0 +1,316 @@
+m255
+K4
+z2
+!s11f MIXED_VERSIONS
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+dD:/Files/University/Term 4/DLD Lab/Projects/Project2/ModelSim/NoiseEliminatorTB
+vAdder
+Z0 !s110 1620495306
+Z1 VDg1SIo80bB@j0V0VzS_@n1
+r1
+!s85 0
+!i10b 1
+!s100 cf==USG^[Le97e4<mA`;91
+Ij=imMi_BeSeXm4W5CN]]=1
+Z2 dD:/Files/University/Term 4/CA/Projects/Project2/MIPS
+Z3 w1620495303
+Z4 8D:\Files\University\Term 4\CA\Projects\Project2\MIPS\DataPath.v
+Z5 FD:\Files\University\Term 4\CA\Projects\Project2\MIPS\DataPath.v
+!i122 24
+L0 36 3
+Z6 OV;L;2020.1;71
+31
+Z7 !s108 1620495306.000000
+Z8 !s107 D:\Files\University\Term 4\CA\Projects\Project2\MIPS\DataPath.v|
+Z9 !s90 -reportprogress|300|-work|work|-stats=none|D:\Files\University\Term 4\CA\Projects\Project2\MIPS\DataPath.v|
+!i113 1
+Z10 o-work work
+Z11 tCvgOpt 0
+n@adder
+vALU
+R0
+R1
+r1
+!s85 0
+!i10b 1
+!s100 KFOPdj2ezBnmJIX:DEaN03
+IkXj=AZTWoaI3_J0PG:0R^2
+R2
+R3
+R4
+R5
+!i122 24
+L0 100 11
+R6
+31
+R7
+R8
+R9
+!i113 1
+R10
+R11
+n@a@l@u
+vController
+R0
+!i10b 1
+!s100 V=Z]MH7TdfNHB=O2<E8872
+Z12 !s11b Dg1SIo80bB@j0V0VzS_@n1
+I]5?P>C_kJRa:LeQm1SN>h2
+R1
+R2
+w1620494799
+8D:/Files/University/Term 4/CA/Projects/Project2/MIPS/Controller.v
+FD:/Files/University/Term 4/CA/Projects/Project2/MIPS/Controller.v
+!i122 25
+L0 1 94
+R6
+r1
+!s85 0
+31
+R7
+!s107 D:/Files/University/Term 4/CA/Projects/Project2/MIPS/Controller.v|
+!s90 -reportprogress|300|-work|work|-stats=none|D:/Files/University/Term 4/CA/Projects/Project2/MIPS/Controller.v|
+!i113 1
+R10
+R11
+n@controller
+vDataMem
+R0
+R1
+r1
+!s85 0
+!i10b 1
+!s100 nSLfl9RT=b@<N<2[Wf_eh0
+IaVR?49j]0l`?hF7ElR0bQ2
+R2
+R3
+R4
+R5
+!i122 24
+L0 88 11
+R6
+31
+R7
+R8
+R9
+!i113 1
+R10
+R11
+n@data@mem
+vDataPath
+R0
+!i10b 1
+!s100 dCh`=Fg5k2j8dihz7Nm<h3
+R12
+IH8e2b1N;KmN]KGRcha:`I3
+R1
+R2
+R3
+R4
+R5
+!i122 24
+L0 1 34
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+R10
+R11
+n@data@path
+XDataPath_v_unit
+DXx6 sv_std 3 std 0 22 VYECXdT12H8WgbUP_5Y6:3
+R0
+V[jR[M[lOK7Nbh5<;MlzM51
+r1
+!s85 0
+!i10b 1
+!s100 PijETG:KQ1;JSVX5m?n@02
+I[jR[M[lOK7Nbh5<;MlzM51
+!i103 1
+S1
+R2
+R3
+R4
+R5
+!i122 24
+L0 34 0
+R6
+31
+R7
+R8
+R9
+!i113 1
+R10
+R11
+n@data@path_v_unit
+vInstMem
+R0
+R1
+r1
+!s85 0
+!i10b 1
+!s100 hD1TMW^;27LjYc[zbSD[d2
+IWQMVefaWd^;iWO8O[n`?D1
+R2
+R3
+R4
+R5
+!i122 24
+L0 120 13
+R6
+31
+R7
+R8
+R9
+!i113 1
+R10
+R11
+n@inst@mem
+vMux2
+R0
+R1
+r1
+!s85 0
+!i10b 1
+!s100 IPNgAeQ3MaPfC@Fg77Zlk3
+I8TU[dIEg;c@]9?9RnE14W2
+R2
+R3
+R4
+R5
+!i122 24
+L0 40 3
+R6
+31
+R7
+R8
+R9
+!i113 1
+R10
+R11
+n@mux2
+vMux4
+R0
+R1
+r1
+!s85 0
+!i10b 1
+!s100 Nc]W@>L]MlmORahmoNS8=3
+IcfN>c`gF2moZ6ac@jY2:L1
+R2
+R3
+R4
+R5
+!i122 24
+L0 44 13
+R6
+31
+R7
+R8
+R9
+!i113 1
+R10
+R11
+n@mux4
+vPC_Reg
+R0
+R1
+r1
+!s85 0
+!i10b 1
+!s100 e5OT[NgU=74N6Bi5S^nk[0
+I[dkRBV_BACXfoH>^4BgEP2
+R2
+R3
+R4
+R5
+!i122 24
+L0 58 9
+R6
+31
+R7
+R8
+R9
+!i113 1
+R10
+R11
+n@p@c_@reg
+vRegisterFile
+R0
+R1
+r1
+!s85 0
+!i10b 1
+!s100 n6W3hiYX3Il32L57?RiXe0
+IKjM^0Q5UQ6o^a=56Q_4<N2
+R2
+R3
+R4
+R5
+!i122 24
+L0 68 19
+R6
+31
+R7
+R8
+R9
+!i113 1
+R10
+R11
+n@register@file
+vSignEx
+R0
+R1
+r1
+!s85 0
+!i10b 1
+!s100 >94g`VGeeRXOLTOi>N]`o3
+I?fTh^WXE]RgY:ElD1``Ij0
+R2
+R3
+R4
+R5
+!i122 24
+L0 112 7
+R6
+31
+R7
+R8
+R9
+!i113 1
+R10
+R11
+n@sign@ex
+vTopDesign
+!s110 1620495307
+!i10b 1
+!s100 =<doU]aJZAVY>8BPTWU;43
+R12
+InCgiO@kF1>DnJG6XQ@@_`3
+R1
+R2
+w1620494672
+8D:/Files/University/Term 4/CA/Projects/Project2/MIPS/TopDesign.v
+FD:/Files/University/Term 4/CA/Projects/Project2/MIPS/TopDesign.v
+!i122 26
+L0 1 14
+R6
+r1
+!s85 0
+31
+R7
+!s107 D:/Files/University/Term 4/CA/Projects/Project2/MIPS/TopDesign.v|
+!s90 -reportprogress|300|-work|work|-stats=none|D:/Files/University/Term 4/CA/Projects/Project2/MIPS/TopDesign.v|
+!i113 1
+R10
+R11
+n@top@design
