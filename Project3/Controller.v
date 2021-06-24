@@ -1,7 +1,9 @@
 module Controller(input clk, zero, input [5 : 0]op, input [5 : 0]func, output reg J_type, Branch, PCsrc, RegWrite, ALUsrc,
 		MemRead , MemWrite, output reg[2 : 0]ALUop, output reg[1 : 0]RegDest, output reg[1 : 0] WriteReg);
 
-	parameter[5:0] RT = 6'b000000, lw = 6'b100011, sw = 6'b101011, beq = 6'b000100, bne = 6'b000101, J = 6'b000010, Jal = 6'b000011, Jr = 6'b001000, add = 6'b100001, sub = 6'b100011, addi = 6'b001100, slt = 6'b101010, slti = 6'b001010;
+	parameter[5:0] RT = 6'b000000, lw = 6'b100011, sw = 6'b101011, beq = 6'b000100, bne = 6'b000101,
+			J = 6'b000010, Jal = 6'b000011, Jr = 6'b001000, add = 6'b100001, sub = 6'b100011, addi = 6'b001100,
+			slt = 6'b101010, slti = 6'b001010;
 	parameter ADD = 0;
 	parameter SUB = 1;
 

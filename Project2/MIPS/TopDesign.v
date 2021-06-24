@@ -10,5 +10,5 @@ module TopDesign(input clk, rst);
 	Controller controller(clk, zero, op, func, J_type, Branch, PCsrc, RegWrite, ALUsrc, MemRead, MemWrite, ALUop,
 			RegDest, WriteReg);
 	DataPath data_path(clk, rst, J_type, Branch, PCsrc, RegWrite, ALUsrc, MemRead, MemWrite, ALUop, RegDest, WriteReg,
-			zer, Adrout, op, func);
+			zero, Adrout, op, func);
 endmodule

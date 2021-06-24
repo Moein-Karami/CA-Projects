@@ -1,0 +1,251 @@
+m255
+K4
+z2
+!s11f MIXED_VERSIONS
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+dD:/Files/University/Term 4/DLD Lab/Projects/Project4/ModelSim/Frequency Multiplire
+vALU
+Z0 !s110 1624384113
+!i10b 1
+!s100 V44zM6^9@c2WA8f_VdD:=0
+Z1 !s11b Dg1SIo80bB@j0V0VzS_@n1
+If<nMAoZB_6BBFEh^PHbCm0
+Z2 VDg1SIo80bB@j0V0VzS_@n1
+Z3 dD:/Files/University/Term 4/CA/Projects/Project4
+Z4 w1624384108
+Z5 8D:/Files/University/Term 4/CA/Projects/Project4/DataPath.v
+Z6 FD:/Files/University/Term 4/CA/Projects/Project4/DataPath.v
+!i122 6
+L0 90 11
+Z7 OV;L;2020.1;71
+r1
+!s85 0
+31
+Z8 !s108 1624384113.000000
+!s107 D:/Files/University/Term 4/CA/Projects/Project4/DataPath.v|
+Z9 !s90 -reportprogress|300|-work|work|-stats=none|D:/Files/University/Term 4/CA/Projects/Project4/DataPath.v|
+!i113 1
+Z10 o-work work
+Z11 tCvgOpt 0
+n@a@l@u
+vController
+!s110 1624383584
+!i10b 1
+!s100 GUWogY=b`gEf4^j46YeIS3
+R1
+IbmT?QS071J_00olBiXgzZ0
+R2
+R3
+w1624383580
+8D:\Files\University\Term 4\CA\Projects\Project4\Controller.v
+FD:\Files\University\Term 4\CA\Projects\Project4\Controller.v
+!i122 2
+L0 1 61
+R7
+r1
+!s85 0
+31
+!s108 1624383584.000000
+!s107 D:\Files\University\Term 4\CA\Projects\Project4\Controller.v|
+!s90 -reportprogress|300|-work|work|-stats=none|D:\Files\University\Term 4\CA\Projects\Project4\Controller.v|
+!i113 1
+R10
+R11
+n@controller
+vDataPath
+R0
+!i10b 1
+!s100 3hnNcf:J:=@91Vh3e0iz]2
+R1
+IlQelL:TX2Znh>8eHREYRI2
+R2
+R3
+R4
+R5
+R6
+!i122 6
+L0 1 29
+R7
+r1
+!s85 0
+31
+R8
+Z12 !s107 D:/Files/University/Term 4/CA/Projects/Project4/DataPath.v|
+R9
+!i113 1
+R10
+R11
+n@data@path
+vMemory
+R0
+!i10b 1
+!s100 8e<O0CM^jH0fbR9jZVfNE0
+R1
+IXj`R`1OQzIzl55MgW3X1H1
+R2
+R3
+R4
+R5
+R6
+!i122 6
+L0 77 12
+R7
+r1
+!s85 0
+31
+R8
+R12
+R9
+!i113 1
+R10
+R11
+n@memory
+vMux2
+R0
+!i10b 1
+!s100 h8]UY9fP75c=c9bk5JzAK2
+R1
+I2iUY:;>MmJH?J;B[UEcf_2
+R2
+R3
+R4
+R5
+R6
+!i122 6
+L0 41 3
+R7
+r1
+!s85 0
+31
+R8
+R12
+R9
+!i113 1
+R10
+R11
+n@mux2
+vMux4
+R0
+!i10b 1
+!s100 [RhbV9T1d:EQECX2Ubh0j3
+R1
+I4oM5;aN>09;M>2;I0VCTh0
+R2
+R3
+R4
+R5
+R6
+!i122 6
+L0 45 6
+R7
+r1
+!s85 0
+31
+R8
+R12
+R9
+!i113 1
+R10
+R11
+n@mux4
+vRegister
+R0
+!i10b 1
+!s100 >U@V6Ril=`Nf>NbmAQ6cV0
+R1
+IB?l^IXCn^izXJQKF?cd7g2
+R2
+R3
+R4
+R5
+R6
+!i122 6
+L0 31 9
+R7
+r1
+!s85 0
+31
+R8
+R12
+R9
+!i113 1
+R10
+R11
+n@register
+vSignExtend
+R0
+!i10b 1
+!s100 `^h9m:kV3Q3DhSLoE:d<f3
+R1
+IA@kQ4a;<Hi_=O^Bb>fZh`3
+R2
+R3
+R4
+R5
+R6
+!i122 6
+L0 102 3
+R7
+r1
+!s85 0
+31
+R8
+R12
+R9
+!i113 1
+R10
+R11
+n@sign@extend
+vStack
+R0
+!i10b 1
+!s100 Tch>4Zef7_>ED<U^`QP043
+R1
+IC7QI9kkUL`fM6l?JBiBiQ0
+R2
+R3
+R4
+R5
+R6
+!i122 6
+L0 52 24
+R7
+r1
+!s85 0
+31
+R8
+R12
+R9
+!i113 1
+R10
+R11
+n@stack
+vTopDesign
+!s110 1624383357
+!i10b 1
+!s100 6PRXdiCINZ9`dT_EGZjRh0
+R1
+I:z00MS<3c?NDz^GHUlLXX2
+R2
+R3
+w1624383185
+8D:/Files/University/Term 4/CA/Projects/Project4/TopDesign.v
+FD:/Files/University/Term 4/CA/Projects/Project4/TopDesign.v
+!i122 1
+L0 1 11
+R7
+r1
+!s85 0
+31
+!s108 1624383357.000000
+!s107 D:/Files/University/Term 4/CA/Projects/Project4/TopDesign.v|
+!s90 -reportprogress|300|-work|work|-stats=none|D:/Files/University/Term 4/CA/Projects/Project4/TopDesign.v|
+!i113 1
+R10
+R11
+n@top@design

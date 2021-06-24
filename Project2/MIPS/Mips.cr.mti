@@ -5,28 +5,12 @@ Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 
 Top level modules:
 	TopDesign
 
-} {} {}} {D:/Files/University/Term 4/CA/Projects/Project2/MIPS/DataPath.v} {2 {vlog -work work -stats=none {D:\Files\University\Term 4\CA\Projects\Project2\MIPS\DataPath.v}
+} {} {}} {D:/Files/University/Term 4/CA/Projects/Project2/MIPS/TB_MIPS.v} {1 {vlog -work work -stats=none {D:/Files/University/Term 4/CA/Projects/Project2/MIPS/TB_MIPS.v}
 Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
--- Compiling module DataPath
-** Warning: D:\Files\University\Term 4\CA\Projects\Project2\MIPS\DataPath.v(23): (vlog-2121) Illegal concatenation of an unsized constant. Will treat it as a 32-bit value.
-** Warning: D:\Files\University\Term 4\CA\Projects\Project2\MIPS\DataPath.v(23): (vlog-2121) Illegal concatenation of an unsized constant. Will treat it as a 32-bit value.
-** Warning: D:\Files\University\Term 4\CA\Projects\Project2\MIPS\DataPath.v(24): (vlog-2121) Illegal concatenation of an unsized constant. Will treat it as a 32-bit value.
-** Warning: D:\Files\University\Term 4\CA\Projects\Project2\MIPS\DataPath.v(24): (vlog-2121) Illegal concatenation of an unsized constant. Will treat it as a 32-bit value.
-** Warning: D:\Files\University\Term 4\CA\Projects\Project2\MIPS\DataPath.v(34): (vlog-2283) Extra semicolon in $unit (global) scope.
-** Warning: D:\Files\University\Term 4\CA\Projects\Project2\MIPS\DataPath.v(132): (vlog-2284) Empty $unit scope found.
--- Compiling package DataPath_v_unit
--- Compiling module Adder
--- Compiling module Mux2
--- Compiling module Mux4
--- Compiling module PC_Reg
--- Compiling module RegisterFile
--- Compiling module DataMem
--- Compiling module ALU
--- Compiling module SignEx
--- Compiling module InstMem
+-- Compiling module TB_MIPS
 
 Top level modules:
-	DataPath
+	TB_MIPS
 
 } {} {}} {D:/Files/University/Term 4/CA/Projects/Project2/MIPS/Controller.v} {1 {vlog -work work -stats=none {D:/Files/University/Term 4/CA/Projects/Project2/MIPS/Controller.v}
 Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020

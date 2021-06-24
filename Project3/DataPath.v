@@ -1,6 +1,42 @@
-module DataPath(input clk, rst, J_type, Branch, PCsrc, RegWrite, ALUsrc, MemRead, MemWrite, input [2 : 0]ALUop,
-		input [1 : 0]RegDest, input [1 : 0] WriteReg, output zero, output[31 : 0]Adrout, output [5 : 0]op,
-		output [5 : 0]func);
+module DataPath(input clk, rst, J_type3, PCsrc3, RegWrite4, ALUsrc2, MemRead3, MemWrite3, beq3, bneq3, forward1,
+		forward2, input [2 : 0]ALUop2, input [1 : 0]RegDest2, input [1 : 0] WriteReg4, output zero,
+		output[31 : 0]Adrout, output [5 : 0]op, output [5 : 0]func);
+	wire [31 : 0] pc_in;
+	wire [31 : 0] pc_out;
+	wire [31 : 0] adder_out;
+	wire [31 : 0] inst_mem_out;
+	wire [31 : 0] pc_4_reg_out;
+	wire [31 : 0] instructions_reg_out;
+	wire [25 : 0] inst250_reg_out;
+	wire [25 : 0] inst250_reg_2_out;
+	wire [31 : 0] left_mux_0_in;
+	wire [31 : 0] left_mux_out;
+	wire [31 : 0] pc_4_reg2_out;
+	wire [31 : 0] read_data1;
+	wire [31 : 0] read_data2;
+	wire [31 : 0] pc_4_reg3_out;
+	wire [29 : 0] sign_extend_out;
+	wire [31 : 0] shift_left2_out;
+	wire zero2;
+	wire [29 : 0] inst150_reg_out;
+	wire [4 : 0] inst2016_reg_out;
+	wire [4 : 0] inst1511_reg_out;
+	wire [31 : 0] data2_out_reg_out;
+	wire [31 : 0] ALU_A_in;
+	wire [31 : 0] ALU_B_in;
+	wire [31 : 0] ALU_out;
+	wire zero;
+	wire zero_reg_out;
+	wire [31 : 0] ALU_res_reg_out;
+	wire [31 : 0] pc_4_reg4_out;
+	wire [31 : 0] write_adress_reg_out;
+	wire [31 : 0] data1_out_reg_out;
+	wire [31 : 0] read_data;
+	wire [31 : 0] ALU_res_reg2_out;
+	wire [31 : 0] data_mem_reg_out;
+	wire [31 : 0] wire_adress_reg2_out;
+	wire [31 : 0] right_mux_out;
+	
 	wire [31 : 0] new_pc;
 	wire [31 : 0] pc_4;
 	wire [31 : 0] J_type_output;
@@ -55,21 +91,13 @@ module Mux4 #(parameter N)(input [1 : 0]s, input [N - 1 : 0]a, input [N - 1 : 0]
 	end
 endmodule
 
-module PC_Reg(input clk, rst, input [31 : 0]new_pc, output reg [31 : 0]pc);
-	reg first_time;
+module Register #(parameter N)(input clk, rst, input [N - 1 : 0]in, output reg [N - 1 : 0]out);
 	always @(posedge clk, posedge rst)
 	begin
-		if (rst) begin 
-			pc = 0;
-			first_time = 1'b0;
-		end 
-		else if(!first_time) 
-		begin 
-			pc <= pc;
-			first_time = 1'b1;
-		end
+		if (rst)
+			out = 0;
 		else
-			pc <= new_pc;
+			out = in
 	end
 endmodule
 
@@ -77,7 +105,7 @@ module RegisterFile(input clk, rst, reg_write, input [4 : 0]reg1, input [4 : 0]r
 		input [31 : 0]write_data, output reg[31 : 0]data1, output reg [31 : 0]data2);
 	reg [31 : 0]registers[31 : 0];
 	integer i;
-	always@ (reg1, reg2) begin 
+	always@ (reg1, reg2) begin
 			data1 = registers[reg1];
 			data2 = registers[reg2];
 	end
@@ -94,9 +122,9 @@ module RegisterFile(input clk, rst, reg_write, input [4 : 0]reg1, input [4 : 0]r
 	end
 endmodule
 
-module DataMem(input clk, mem_read, mem_write, input [31 : 0]adress, input [31 : 0]data, output [31 : 0]out);
+module DataMem(input clk, mem_read, mem_write, input [31 : 0]adress, input [31 : 0]data, output reg[31 : 0]out);
 	reg [31 : 0]mem[65531 : 0];
-	initial begin 
+	initial begin
 		mem[1000] = {29'b0, 3'b011};
 		mem[1004] = {29'b0, 3'b111};
 		mem[1008] = {29'b0, 3'b100};
@@ -108,19 +136,12 @@ module DataMem(input clk, mem_read, mem_write, input [31 : 0]adress, input [31 :
 		mem[1032] = {29'b0, 3'b011};
 		mem[1036] = {29'b0, 3'b011};
 	end
-	always@ (adress or data) begin 
+	always@ (adress or data) begin
 		if(mem_read)
 			out = mem[adress];
 		if(mem_write)
 			mem[adress] = data;
 	end
-
-	assign out = mem[adress];
-	always @(posedge clk) begin
-		if (mem_write)
-			mem[adress] = data;
-	end
-	
 endmodule
 
 module ALU(input [2 : 0]ALUop, input [31 : 0]a, input [31 : 0]b, output zero, output reg [31 : 0]out);
@@ -147,7 +168,7 @@ module InstMem(input clk, input [31 : 0]in, output reg [31 : 0]out);
 	reg [31 : 0]ins[65531 : 0];
 
 	initial begin
-		$display("Loading instructions");
+		$display("Loading Instructions");
 		$readmemb("instructions.mem", ins);
 	end
 
