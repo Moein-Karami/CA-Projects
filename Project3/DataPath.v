@@ -1,6 +1,8 @@
-module DataPath(input clk, rst, J_type3, PCsrc3, RegWrite4, ALUsrc2, MemRead3, MemWrite3, beq3, bneq3, forward1,
+module DataPath(input clk, rst, J_type3, PCsrc3, RegWrite4, ALUsrc2, MemRead3, MemWrite3, beq3, bneq3, input [1:0] forward1,
 		forward2, input [2 : 0]ALUop2, input [1 : 0]RegDest2, input [1 : 0] WriteReg4, output zero,
-		output[31 : 0]Adrout, output [5 : 0]op, output [5 : 0]func);
+		output[31 : 0]Adrout, output [5 : 0]op, output [5 : 0]func, output [4 : 0]write_adress_reg_out,
+		output [4 : 0] write_adress_reg2_out, output [31 : 0]data1_reg_out, output [31 : 0]data2_reg_out);
+
 	wire [31 : 0] pc_in;
 	wire [31 : 0] pc_out;
 	wire [31 : 0] adder_out;
@@ -15,58 +17,71 @@ module DataPath(input clk, rst, J_type3, PCsrc3, RegWrite4, ALUsrc2, MemRead3, M
 	wire [31 : 0] read_data1;
 	wire [31 : 0] read_data2;
 	wire [31 : 0] pc_4_reg3_out;
-	wire [29 : 0] sign_extend_out;
+	wire [31 : 0] sign_extend_out;
 	wire [31 : 0] shift_left2_out;
 	wire zero2;
-	wire [29 : 0] inst150_reg_out;
+	wire [31 : 0] inst150_reg_out;
+	wire [31 : 0] inst150_reg2_out;
 	wire [4 : 0] inst2016_reg_out;
 	wire [4 : 0] inst1511_reg_out;
 	wire [31 : 0] data2_out_reg_out;
 	wire [31 : 0] ALU_A_in;
 	wire [31 : 0] ALU_B_in;
 	wire [31 : 0] ALU_out;
-	wire zero;
+	wire [31 : 0] middle_mux_out;
 	wire zero_reg_out;
 	wire [31 : 0] ALU_res_reg_out;
 	wire [31 : 0] pc_4_reg4_out;
-	wire [31 : 0] write_adress_reg_out;
 	wire [31 : 0] data1_out_reg_out;
 	wire [31 : 0] read_data;
 	wire [31 : 0] ALU_res_reg2_out;
 	wire [31 : 0] data_mem_reg_out;
-	wire [31 : 0] wire_adress_reg2_out;
 	wire [31 : 0] right_mux_out;
-	
-	wire [31 : 0] new_pc;
-	wire [31 : 0] pc_4;
-	wire [31 : 0] J_type_output;
-	wire [31 : 0] Branch_output;
-	wire [4 : 0] RegDest_output;
-	wire [31 : 0] ALUsrc_output;
-	wire [31 : 0] old_pc;
-	wire [31 : 0] inst;
-	wire [31 : 0] data1;
-	wire [31 : 0] data2;
-	wire [31 : 0] ALU_B_in;
-	wire [31 : 0] ALU_out;
-	wire [31 : 0] write_out;
-	wire [31 : 0] Adr_inp;
-	assign op = inst[31 : 26];
-	assign func = inst[5 : 0];
+	wire [4 : 0] write_adress_reg_in;
 
-	PC_Reg pc_reg(clk, rst, new_pc, old_pc);
-	Adder #(32)adder(old_pc, 32'd4, pc_4);
-	Mux2 #(32) J_type_mux(J_type, {old_pc[31 : 28], inst[25 : 0], 1'b0, 1'b0}, data1, J_type_output);
-	Mux2 #(32) Branch_mux(Branch, J_type_output, {Adr_inp[29:0], 1'b0, 1'b0}, Branch_output);
-	Mux2 #(32) PCsrc_mux(PCsrc, pc_4, Branch_output, new_pc);
-	InstMem inst_mem(clk, old_pc, inst);
-	Mux4 #(5) RegDest_mux(RegDest, inst[20 : 16], inst[15 : 11], 5'b11111, 5'b0, RegDest_output);
-	RegisterFile register_file(clk, rst, RegWrite, inst[25 : 21], inst[20 : 16], RegDest_output, write_out, data1, data2);
-	Mux2 #(32) ALUsrc_mux(ALUsrc, data2, Adr_inp, ALUsrc_output);
-	ALU alu(ALUop, data1, ALUsrc_output, zero, ALU_out);
-	SignEx signex(inst[15 : 0], Adr_inp);
-	Mux4 #(32) WriteRegmux(WriteReg, ALU_out, {31'b0, ALU_out[31]}, Adrout, pc_4, write_out);
-	DataMem data_mem(clk, MemRead, MemWrite, ALU_out, data1, Adrout);
+	assign op = instructions_reg_out[31 : 26];
+	assign func = instructions_reg_out[5 : 0];
+
+	Register #(32) pc_reg(clk, rst, pc_in, pc_out);
+	InstMem inst_mem(clk, pc_out, inst_mem_out);
+	Adder #(32)adder(4, pc_out, adder_out);
+	Mux2 #(32)mux2_1(PCsrc3, adder_out, left_mux_out, pc_in);
+	Register #(32) pc_4_reg(clk, rst, adder_out, pc_4_reg_out);
+	Register #(32) instructions_reg(clk, rst, inst_mem_out, instructions_reg_out);
+	Register #(26) inst250_reg(clk, rst, instructions_reg_out[25 : 0], inst250_reg_out);
+	Mux2 #(32) mux2_2((~zero_reg_out & beq3) | (zero_reg_out &bneq3), left_mux_0_in, shift_left2_out, left_mux_out);
+	Register #(26)inst250_reg2(clk, rst, inst250_reg_out, inst250_reg_2_out);
+	Register #(32)pc_4_reg2(clk, rst, pc_4_reg_out, pc_4_reg2_out);
+	Mux2 #(32) mux2_3(J_type3, {pc_4_reg3_out[31 : 28], inst250_reg_2_out, 2'b00}, data1_out_reg_out, left_mux_0_in);
+	RegisterFile register_file(clk, rst, RegWrite4, instructions_reg_out[25 : 21], instructions_reg_out[20 : 16],
+			write_adress_reg_out, right_mux_out, read_data1, read_data2);
+	Register #(32) data1_reg(clk, rst, read_data1, data1_reg_out);
+	Register #(32) data2_reg(clk, rst, read_data2, data2_reg_out);
+	Register #(32) pc_4_reg3(clk, rst, pc_4_reg2_out, pc_4_reg3_out);
+	SignEx sign_ex(instructions_reg_out[15 : 0], sign_extend_out);
+	assign shift_left2_out = {inst150_reg_out[29 : 0], 2'b00};
+	Mux4 #(32) mux4_1(forward2, data1_reg_out, ALU_res_reg_out, right_mux_out, 32'b0, ALU_A_in);
+	Mux4 #(32) mux4_2(forward1, data2_reg_out, ALU_res_reg_out, right_mux_out, 32'b0, middle_mux_out);
+	Register #(32) inst150_reg(clk, rst, sign_extend_out, inst150_reg_out);
+	Register #(5) inst2016_reg(clk, rst, instructions_reg_out[20 : 16], inst2016_reg_out);
+	Register #(5) inst1511_Reg(clk, rst, instructions_reg_out[15 : 11], inst1511_reg_out);
+	assign zero2 = (ALU_A_in == middle_mux_out);
+	Mux2 #(32) mux2_4(ALUsrc2, middle_mux_out, inst150_reg_out, ALU_B_in);
+	Register #(32) inst150_reg2(clk, rst, inst150_reg_out, inst150_reg2_out);
+	Mux4 #(5) mux4_3(RegDest2, inst2016_reg_out, inst1511_reg_out, 5'b11111, 5'b0, write_adress_reg_in);
+	ALU ALU(ALUop2, ALU_A_in, ALU_B_in, zero, ALU_out);
+	Register #(32) data2_out_reg(clk, rst, middle_mux_out, data2_out_reg_out);
+	Register #(32) data1_out_reg(clk, rst, ALU_A_in, data1_out_reg_out);
+	Register #(1) zero_reg(clk, rst, zero, zero_reg_out);
+	Register #(32) ALU_res_reg(clk, rst, ALU_out, ALU_res_reg_out);
+	Register #(5) write_adress_reg(clk, rst, write_adress_reg_in, write_adress_reg_out);
+	Register #(32) pc_4_reg4(clk, rst, pc_4_reg3_out, pc_4_reg4_out);
+	DataMem data_mem(clk, MemRead3, MemWrite3, ALU_res_reg_out, data2_out_reg_out, read_data);
+	assign Adrout = read_data;
+	Register #(32) ALU_res_reg2(clk, rst, ALU_res_reg_out, ALU_res_reg2_out);
+	Register #(5) write_adress_reg2(clk, rst, write_adress_reg_out, write_adress_reg2_out);
+	Register #(32) data_mem_reg(clk, rst, read_data, daat_mem_reg_out);
+	Mux4 #(32) mux4_4(WrtieReg4, ALU_res_reg2_out, {31'b0, ALU_res_reg2_out[0]}, data_mem_reg_out, pc_4_reg4_out, right_mux_out);
 endmodule
 
 module Adder #(parameter N )(input [N - 1 : 0]a, input [N - 1 : 0]b, output [N - 1 : 0]out);
@@ -97,7 +112,7 @@ module Register #(parameter N)(input clk, rst, input [N - 1 : 0]in, output reg [
 		if (rst)
 			out = 0;
 		else
-			out = in
+			out = in;
 	end
 endmodule
 

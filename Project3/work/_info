@@ -1,6 +1,7 @@
 m255
 K4
 z2
+!s11f MIXED_VERSIONS
 13
 !s112 1.1
 !i10d 8192
@@ -8,3 +9,291 @@ z2
 !i10f 100
 cModel Technology
 dD:/Files/University/Term 4/CA/Projects/Project4
+vAdder
+Z0 !s110 1624576103
+!i10b 1
+!s100 4]8?Y6=0^c1II1Nd0?m1P3
+Z1 !s11b Dg1SIo80bB@j0V0VzS_@n1
+I[SmDPI:K]^P0FODaIkEe>3
+Z2 VDg1SIo80bB@j0V0VzS_@n1
+Z3 dD:/Files/University/Term 4/CA/Projects/Project3
+Z4 w1624575068
+Z5 8D:/Files/University/Term 4/CA/Projects/Project3/DataPath.v
+Z6 FD:/Files/University/Term 4/CA/Projects/Project3/DataPath.v
+!i122 12
+L0 87 3
+Z7 OV;L;2020.1;71
+r1
+!s85 0
+31
+Z8 !s108 1624576103.000000
+!s107 D:/Files/University/Term 4/CA/Projects/Project3/DataPath.v|
+Z9 !s90 -reportprogress|300|-work|work|-stats=none|D:/Files/University/Term 4/CA/Projects/Project3/DataPath.v|
+!i113 1
+Z10 o-work work
+Z11 tCvgOpt 0
+n@adder
+vALU
+R0
+!i10b 1
+!s100 ]20FJohUaWlmQ8H0c[_fN0
+R1
+IOoQ5KC7m_PgbSC??R?g^C2
+R2
+R3
+R4
+R5
+R6
+!i122 12
+L0 162 11
+R7
+r1
+!s85 0
+31
+R8
+Z12 !s107 D:/Files/University/Term 4/CA/Projects/Project3/DataPath.v|
+R9
+!i113 1
+R10
+R11
+n@a@l@u
+vController
+R0
+!i10b 1
+!s100 ?CmjnL_3IEP0MKMkIdUDK1
+R1
+I6TU^O:7m^f_K>EgLX_^>o0
+R2
+R3
+w1624575414
+8D:\Files\University\Term 4\CA\Projects\Project3\Controller.v
+FD:\Files\University\Term 4\CA\Projects\Project3\Controller.v
+!i122 10
+L0 1 137
+R7
+r1
+!s85 0
+31
+R8
+!s107 D:\Files\University\Term 4\CA\Projects\Project3\Controller.v|
+!s90 -reportprogress|300|-work|work|-stats=none|D:\Files\University\Term 4\CA\Projects\Project3\Controller.v|
+!i113 1
+R10
+R11
+n@controller
+vDataMem
+R0
+!i10b 1
+!s100 iz9hc5R7l=4RKnz]LK9a[3
+R1
+I@j7QP:WF7b9`cdA4E@ZFH3
+R2
+R3
+R4
+R5
+R6
+!i122 12
+L0 140 21
+R7
+r1
+!s85 0
+31
+R8
+R12
+R9
+!i113 1
+R10
+R11
+n@data@mem
+vDataPath
+R0
+!i10b 1
+!s100 ]7dEXS?Q:_Q8M2JFSnd_[2
+R1
+I:S=G0O7af=f]>7df4a=l82
+R2
+R3
+R4
+R5
+R6
+!i122 12
+L0 1 85
+R7
+r1
+!s85 0
+31
+R8
+R12
+R9
+!i113 1
+R10
+R11
+n@data@path
+vForwardUnit
+R0
+!i10b 1
+!s100 GDn]2L[jXo`Z:ZIN5CF6=3
+R1
+I5I_HffC8CjaKb8RQkKfa82
+R2
+R3
+w1624575366
+8D:\Files\University\Term 4\CA\Projects\Project3\ForwardUnit.v
+FD:\Files\University\Term 4\CA\Projects\Project3\ForwardUnit.v
+!i122 11
+L0 1 19
+R7
+r1
+!s85 0
+31
+R8
+!s107 D:\Files\University\Term 4\CA\Projects\Project3\ForwardUnit.v|
+!s90 -reportprogress|300|-work|work|-stats=none|D:\Files\University\Term 4\CA\Projects\Project3\ForwardUnit.v|
+!i113 1
+R10
+R11
+n@forward@unit
+vInstMem
+Z13 !s110 1624576104
+!i10b 1
+!s100 lOV1=ZoAYmhIhI1<SfOCf3
+R1
+IzTO9^RN4f`eoLnYodQY=30
+R2
+R3
+R4
+R5
+R6
+!i122 12
+L0 182 13
+R7
+r1
+!s85 0
+31
+R8
+R12
+R9
+!i113 1
+R10
+R11
+n@inst@mem
+vMux2
+R0
+!i10b 1
+!s100 jUHfE=O?WmzGTIi<>LenH0
+R1
+I:2`VEi[L@ZiW55EgNQE5:0
+R2
+R3
+R4
+R5
+R6
+!i122 12
+L0 91 3
+R7
+r1
+!s85 0
+31
+R8
+R12
+R9
+!i113 1
+R10
+R11
+n@mux2
+vMux4
+R0
+!i10b 1
+!s100 IU0GbgMYBWID8T?[05n6V0
+R1
+IIzI6a0kFn]c0c^QjK33bz0
+R2
+R3
+R4
+R5
+R6
+!i122 12
+L0 95 13
+R7
+r1
+!s85 0
+31
+R8
+R12
+R9
+!i113 1
+R10
+R11
+n@mux4
+vRegister
+R0
+!i10b 1
+!s100 ^Oe;hb8zG0oI=Z;eJ>XDc0
+R1
+IY@fEl?[G2g08D@WB]Wz=F1
+R2
+R3
+R4
+R5
+R6
+!i122 12
+L0 109 9
+R7
+r1
+!s85 0
+31
+R8
+R12
+R9
+!i113 1
+R10
+R11
+n@register
+vRegisterFile
+R0
+!i10b 1
+!s100 jNV47]3oP@49Zb:?_VeYF0
+R1
+I3E7jKo4oXXAoz[DJA9@X`1
+R2
+R3
+R4
+R5
+R6
+!i122 12
+L0 119 20
+R7
+r1
+!s85 0
+31
+R8
+R12
+R9
+!i113 1
+R10
+R11
+n@register@file
+vSignEx
+R13
+!i10b 1
+!s100 jJ;k3nfEGnIi2kQXE`Sg_3
+R1
+IEL4IncUQ8U[fzjgW?CiQG3
+R2
+R3
+R4
+R5
+R6
+!i122 12
+L0 174 7
+R7
+r1
+!s85 0
+31
+R8
+R12
+R9
+!i113 1
+R10
+R11
+n@sign@ex
