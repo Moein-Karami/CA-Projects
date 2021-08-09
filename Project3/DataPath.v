@@ -1,7 +1,7 @@
 module DataPath(input clk, rst, J_type3, PCsrc3, RegWrite4, ALUsrc2, MemRead3, MemWrite3, beq3, bneq3, input [1:0] forward1,
-		forward2, input [2 : 0]ALUop2, input [1 : 0]RegDest2, input [1 : 0] WriteReg4, output zero,
+		forward2, input [2 : 0]ALUop2, input [1 : 0]RegDest2, input [1:0] WriteReg3, input [1 : 0] WriteReg4, output zero_reg_out,
 		output[31 : 0]Adrout, output [5 : 0]op, output [5 : 0]func, output [4 : 0]write_adress_reg_out,
-		output [4 : 0] write_adress_reg2_out, output [31 : 0]data1_reg_out, output [31 : 0]data2_reg_out);
+		output [4 : 0] write_adress_reg2_out, output [31 : 0]data1_reg_out, output [31 : 0]data2_reg_out, output [4:0] write_adress_reg_in, wire [25:0] inst250_reg_out);
 
 	wire [31 : 0] pc_in;
 	wire [31 : 0] pc_out;
@@ -9,9 +9,9 @@ module DataPath(input clk, rst, J_type3, PCsrc3, RegWrite4, ALUsrc2, MemRead3, M
 	wire [31 : 0] inst_mem_out;
 	wire [31 : 0] pc_4_reg_out;
 	wire [31 : 0] instructions_reg_out;
-	wire [25 : 0] inst250_reg_out;
 	wire [25 : 0] inst250_reg_2_out;
 	wire [31 : 0] left_mux_0_in;
+	wire zero;
 	wire [31 : 0] left_mux_out;
 	wire [31 : 0] pc_4_reg2_out;
 	wire [31 : 0] read_data1;
@@ -29,7 +29,6 @@ module DataPath(input clk, rst, J_type3, PCsrc3, RegWrite4, ALUsrc2, MemRead3, M
 	wire [31 : 0] ALU_B_in;
 	wire [31 : 0] ALU_out;
 	wire [31 : 0] middle_mux_out;
-	wire zero_reg_out;
 	wire [31 : 0] ALU_res_reg_out;
 	wire [31 : 0] pc_4_reg4_out;
 	wire [31 : 0] data1_out_reg_out;
@@ -37,8 +36,8 @@ module DataPath(input clk, rst, J_type3, PCsrc3, RegWrite4, ALUsrc2, MemRead3, M
 	wire [31 : 0] ALU_res_reg2_out;
 	wire [31 : 0] data_mem_reg_out;
 	wire [31 : 0] right_mux_out;
-	wire [4 : 0] write_adress_reg_in;
-
+	wire [31 : 0] right_mux_out2;
+	
 	assign op = instructions_reg_out[31 : 26];
 	assign func = instructions_reg_out[5 : 0];
 
@@ -49,19 +48,19 @@ module DataPath(input clk, rst, J_type3, PCsrc3, RegWrite4, ALUsrc2, MemRead3, M
 	Register #(32) pc_4_reg(clk, rst, adder_out, pc_4_reg_out);
 	Register #(32) instructions_reg(clk, rst, inst_mem_out, instructions_reg_out);
 	Register #(26) inst250_reg(clk, rst, instructions_reg_out[25 : 0], inst250_reg_out);
-	Mux2 #(32) mux2_2((~zero_reg_out & beq3) | (zero_reg_out &bneq3), left_mux_0_in, shift_left2_out, left_mux_out);
+	Mux2 #(32) mux2_2((zero_reg_out & beq3) | (~zero_reg_out & bneq3), left_mux_0_in, shift_left2_out, left_mux_out);
 	Register #(26)inst250_reg2(clk, rst, inst250_reg_out, inst250_reg_2_out);
 	Register #(32)pc_4_reg2(clk, rst, pc_4_reg_out, pc_4_reg2_out);
-	Mux2 #(32) mux2_3(J_type3, {pc_4_reg3_out[31 : 28], inst250_reg_2_out, 2'b00}, data1_out_reg_out, left_mux_0_in);
+	Mux2 #(32) mux2_3(J_type3, {pc_4_reg3_out[31 : 28], inst250_reg_2_out, 2'b00}, ALU_A_in, left_mux_0_in);
 	RegisterFile register_file(clk, rst, RegWrite4, instructions_reg_out[25 : 21], instructions_reg_out[20 : 16],
-			write_adress_reg_out, right_mux_out, read_data1, read_data2);
+			write_adress_reg2_out, right_mux_out, read_data1, read_data2);
 	Register #(32) data1_reg(clk, rst, read_data1, data1_reg_out);
 	Register #(32) data2_reg(clk, rst, read_data2, data2_reg_out);
 	Register #(32) pc_4_reg3(clk, rst, pc_4_reg2_out, pc_4_reg3_out);
 	SignEx sign_ex(instructions_reg_out[15 : 0], sign_extend_out);
 	assign shift_left2_out = {inst150_reg_out[29 : 0], 2'b00};
-	Mux4 #(32) mux4_1(forward2, data1_reg_out, ALU_res_reg_out, right_mux_out, 32'b0, ALU_A_in);
-	Mux4 #(32) mux4_2(forward1, data2_reg_out, ALU_res_reg_out, right_mux_out, 32'b0, middle_mux_out);
+	Mux4 #(32) mux4_1(forward1, data1_reg_out, right_mux_out2, right_mux_out, read_data, ALU_A_in);
+	Mux4 #(32) mux4_2(forward2, data2_reg_out, right_mux_out2, right_mux_out, read_data, middle_mux_out);
 	Register #(32) inst150_reg(clk, rst, sign_extend_out, inst150_reg_out);
 	Register #(5) inst2016_reg(clk, rst, instructions_reg_out[20 : 16], inst2016_reg_out);
 	Register #(5) inst1511_Reg(clk, rst, instructions_reg_out[15 : 11], inst1511_reg_out);
@@ -80,8 +79,9 @@ module DataPath(input clk, rst, J_type3, PCsrc3, RegWrite4, ALUsrc2, MemRead3, M
 	assign Adrout = read_data;
 	Register #(32) ALU_res_reg2(clk, rst, ALU_res_reg_out, ALU_res_reg2_out);
 	Register #(5) write_adress_reg2(clk, rst, write_adress_reg_out, write_adress_reg2_out);
-	Register #(32) data_mem_reg(clk, rst, read_data, daat_mem_reg_out);
-	Mux4 #(32) mux4_4(WrtieReg4, ALU_res_reg2_out, {31'b0, ALU_res_reg2_out[0]}, data_mem_reg_out, pc_4_reg4_out, right_mux_out);
+	Register #(32) data_mem_reg(clk, rst, read_data, data_mem_reg_out);
+	Mux4 #(32) mux4_4(WriteReg4, ALU_res_reg2_out, {31'b0, ALU_res_reg2_out[31]}, data_mem_reg_out, pc_4_reg4_out - 4, right_mux_out);
+	Mux4 #(32) mux4_5(WriteReg3, ALU_res_reg_out, {31'b0, ALU_res_reg_out[31]}, read_data, pc_4_reg3_out - 4, right_mux_out2);
 endmodule
 
 module Adder #(parameter N )(input [N - 1 : 0]a, input [N - 1 : 0]b, output [N - 1 : 0]out);

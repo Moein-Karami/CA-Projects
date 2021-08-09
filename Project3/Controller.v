@@ -1,14 +1,18 @@
-module Controller(input clk, zero, input [5 : 0]op, input [5 : 0]func, output reg J_type3, PCsrc3, RegWrite4, RegWrite3,
+module Controller(input clk, input rst,zero, input [5 : 0]op, input [5 : 0]func, output reg J_type3, output PCsrc, output reg RegWrite4, RegWrite3,
 		ALUsrc2, MemRead3 , MemWrite3, beq3, bneq3, output reg[2 : 0]ALUop2, output reg[1 : 0]RegDest2,
-		output reg[1 : 0] WriteReg4);
+		output reg [1:0] WriteReg3, output reg[1 : 0] WriteReg4);
 
-	reg PCsrc, PCsrc2;
+	reg PCsrc3, PCsrc2;
 	reg beq, beq2;
 	reg bneq, bneq2;
 	reg ALUsrc;
 	reg ALUop;
+	reg first;
+	reg second;
+	reg third;
+	reg Jm1, Jm2, Jm3;
 	reg MemWrite, MemWrite2;
-	reg[1 : 0] WriteReg, WriteReg2, WriteReg3;
+	reg[1 : 0] WriteReg, WriteReg2;
 	reg RegWrite, RegWrite2;
 	reg J_type, J_type2;
 	reg [1 : 0]RegDest;
@@ -30,8 +34,10 @@ module Controller(input clk, zero, input [5 : 0]op, input [5 : 0]func, output re
 		WriteReg = 0;
 		MemWrite = 0;
 		MemRead = 0;
-		PCsrc = 0;
-
+		first = 1;
+		second = 0;
+		third = 0;
+		Jm1 = 0;
 		if (op == BEQ)
 			beq = 1;
 		else
@@ -91,25 +97,23 @@ module Controller(input clk, zero, input [5 : 0]op, input [5 : 0]func, output re
 
 		if (op == lw)
 			MemRead = 1;
+		if(op == J) 
+			Jm1 = 1;
 
-		if (op == BEQ)
-			PCsrc = zero;
-		else if (op == BNEQ)
-			PCsrc = ~zero;
-		else if (op == J | op == Jal | op == Jr)
-			PCsrc = 1;
 	end
-
+	
+	assign PCsrc = rst ? 1'b1: beq3 ? zero: bneq3 ? ~zero: Jm3 ? 1'b1:1'b0;
+	
 	always @(posedge clk)
 	begin
-		PCsrc3 = PCsrc2;
-		PCsrc2 = PCsrc;
-
 		beq3 = beq2;
 		beq2 = beq;
 
 		bneq3 = bneq2;
 		bneq2 = bneq;
+		
+		third = second;
+		second = first;
 
 		ALUsrc2 = ALUsrc;
 
@@ -124,13 +128,16 @@ module Controller(input clk, zero, input [5 : 0]op, input [5 : 0]func, output re
 		WriteReg4 = WriteReg3;
 		WriteReg3 = WriteReg2;
 		WriteReg2 = WriteReg;
-
+		
 		RegWrite4 = RegWrite3;
 		RegWrite3 = RegWrite2;
 		RegWrite2 = RegWrite;
 
 		J_type3 = J_type2;
 		J_type2 = J_type;
+		
+		Jm3 = Jm2;
+		Jm2 = Jm1;
 
 		RegDest2 = RegDest;
 	end

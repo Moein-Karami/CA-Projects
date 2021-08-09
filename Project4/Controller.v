@@ -1,5 +1,5 @@
-module Controller(input clk, rst, [2 : 0]inst, output adrr, ld_inst, ALUsrcA, output [1 : 0]ALUsrcB, output ld_pc, tos,
-		pc_dst, ld_a, pop, write, output [1 : 0]ALU_Control, output cn_pc_ds, push, st_data);
+module Controller(input pc_temp, clk, rst, [2 : 0]inst, output adrr, ld_inst, ALUsrcA, output [1 : 0]ALUsrcB, output ld_pc, tos,
+		pc_dst, ld_a, pop, write, output [1 : 0]ALU_Control, output cn_pc_ds, push, st_data, ld_mem);
 
 	parameter[3 : 0] IF = 4'b0000;
 	parameter[3 : 0] JMP = 4'b0001;
@@ -35,21 +35,23 @@ module Controller(input clk, rst, [2 : 0]inst, output adrr, ld_inst, ALUsrcA, ou
 		endcase
 	end
 
-	assign adrr = (ps == IF) || (ps == TOS) || (ps == MW) || (ps == PUSH);
+	assign adrr = (ps == IF);
 	assign ld_inst = (ps == IF);
+	assign ld_mem = (ps == TOS);
 	assign ALUsrcA = (ps == IF);
 	assign ALUsrcB = (ps == IF) ? 2'b01 :
 			(ps == NOT) ? 2'b10 : 2'b00;
-	assign ld_pc = (ps == IF) || (ps == JMP) || (ps == JZ);
+	assign ld_pc = (ps == IF) || (ps == JMP) || (ps == JZ && (pc_temp));
 	assign tos = (ps == IF) || (ps == TOS);
 	assign pc_dst = (ps == JMP);
 	assign ld_a = (ps == TOS) || (ps == RT);
 	assign pop = (ps == POP) || (ps == RT) || (ps == POP2);
 	assign write = (ps == MW);
-	assign st_data = (ps == PUSH) || (ps == NOT) || (ps == ALU);
+	assign st_data = (ps == PUSH);
 	assign ALU_Control = (ps == NOT) ? 2'b01 :
 			(ps == ALU) ? inst[1 : 0] : 2'b00;
 	assign cn_pc_ds = (ps == JZ);
+	assign push = (ps == NOT) || (ps == ALU) || (ps == PUSH);
 
 	always @(posedge clk, posedge rst)
 	begin

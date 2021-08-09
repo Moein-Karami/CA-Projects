@@ -1,5 +1,5 @@
-module DataPath(input clk, rst, ld_pc, pc_dst, cn_ps_ds, adrr, write, ld_inst, push, pop, tos, st_data, ld_a, ALUsrcA,
-		input [1 : 0]ALUsrcB, input[1 : 0]ALU_Control, output [2 : 0]inst);
+module DataPath(input clk, rst, ld_pc, pc_dst, cn_pc_ds, adrr, write, ld_inst, push, pop, tos, st_data, ld_a, ALUsrcA,
+		input [1 : 0]ALUsrcB, input[1 : 0]ALU_Control, input ld_mem, output [2 : 0]inst, output pc_temp);
 	wire [4 : 0]pc_input;
 	wire [4 : 0]pc_output;
 	wire [4 : 0]mem_adr;
@@ -13,19 +13,23 @@ module DataPath(input clk, rst, ld_pc, pc_dst, cn_ps_ds, adrr, write, ld_inst, p
 	wire [7 : 0]B_in;
 	wire zero;
 	wire [7 : 0]ALU_out;
+	wire [7:  0] mem_reg_out;
 
 	Register #(5)pc_reg(clk, rst, ld_pc, pc_input, pc_output);
 	Mux2 #(5)adrr_mux(adrr, pc_output, inst_reg_out[4 : 0], mem_adr);
 	Memory memory(clk, write, mem_adr, d_out, mem_out);
 	Register #(8)inst_reg(clk, rst, ld_inst, mem_out, inst_reg_out);
 	SignExtend sign_extend(pc_output, sign_ex_out);
-	Mux2 #(8) stack_mux(st_data, mem_out, Alu, d_in);
+	Mux2 #(8) stack_mux(st_data, mem_reg_out, ALU_out, d_in);
 	Stack stack(clk, rst, push, pop, tos, d_in, d_out);
 	Register #(8)A_reg(clk, rst, ld_a, d_out, A_reg_out);
 	Mux2 #(8)A_mux(ALUsrcA, sign_ex_out, A_reg_out, A_in);
 	Mux4 #(8)B_mux(ALUsrcB, 0, 8'b11111111, 8'b00000001, d_out, B_in);
 	ALU alu(ALU_Control, A_in, B_in, zero, ALU_out);
-	Mux2 #(5)pc_mux((zero & cn_pc_ds) | pc_dst, inst_reg_out, ALU_out, pc_input);
+	Register #(8) MEM_REG(clk, rst, ld_mem, mem_out, mem_reg_out);
+	Mux2 #(5)pc_mux((zero & cn_pc_ds) | pc_dst, inst_reg_out[4:0], ALU_out[4:0], pc_input);
+	assign inst = inst_reg_out[7:5];
+	assign pc_temp = (zero & cn_pc_ds) | pc_dst;
 endmodule
 
 module Register #(parameter N)(input clk, rst, ld, input [N - 1 : 0]in, output reg [N - 1 : 0]out);
@@ -33,8 +37,10 @@ module Register #(parameter N)(input clk, rst, ld, input [N - 1 : 0]in, output r
 	begin
 		if (rst)
 			out = 0;
-		else
-			out = in;
+		else begin 
+			if(ld)
+				out = in;
+		end
 	end
 endmodule
 
@@ -78,7 +84,17 @@ module Memory(input clk, write, input [4 : 0]adr, input [7 : 0]write_data, outpu
 	reg [7 : 0]data[31 : 0];
 	assign read_data = data[adr];
 	initial begin
-		///
+		data[0] = 8'b10011111; // push a 
+		data[1] = 8'b10011110; // push b 
+		data[2] = 8'b00000000; // add 
+		data[3] = 8'b10011101; // push c 
+		data[4] = 8'b10011100; // push d 
+		data[5] = 8'b00000000; // add
+		data[6] = 8'b00100000; // sub
+		data[31] = 8'b00000110; // a
+		data[30] = 8'b00001000; // b
+		data[29] = 8'b00000011; // c
+		data[28] = 8'b00000110; // d
 	end
 
 	always @(posedge clk) begin
